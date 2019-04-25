@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="itmd4515testPU" transaction-type="RESOURCE_LOCAL">
+    <jta-data-source>jdbc/itmd4515</jta-data-source>
+    <class>edu.iit.sat.itmd4515.pgupta25.domain.Student</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.domain.Course</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.domain.Department</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.domain.Grade</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.domain.Teacher</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.service.TeacherService</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.service.StudentService</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.service.CourseService</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.service.DepartmentService</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.service.CourseService</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.service.StartupSeedDatabase</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.service.AbstractService</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.domain.security.Group</class>
+    <class>edu.iit.sat.itmd4515.pgupta25.domain.security.User</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.validation.mode" value="none"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/itmd4515?useSSL=false&amp;zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="itmduser"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="itmduser"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="-Ddeployment.resource.validation" value="false"/>
+    </properties>
+  </persistence-unit>
+</persistence>

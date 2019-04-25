@@ -1,0 +1,13 @@
+edu/iit/sat/itmd4515/pgupta25/domain/AbstractGradeTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/StudentTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/CourseValidationTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/AbstractDepartmentTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/CourseTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/DepartmentTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/AbstractCourseTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/TeacherTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/DepartmentValidationTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/AbstractTeacherTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/TeacherValidationTest.class
+edu/iit/sat/itmd4515/pgupta25/domain/AbstractJPATest.class
+edu/iit/sat/itmd4515/pgupta25/domain/StudentValidationTest.class
