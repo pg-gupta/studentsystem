@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/templates/portalTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Grade
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h:panelGroup layout="block" class="form-group">
+                <h:selectOneMenu class="custom-select"
+                                 id="student"
+                                 value="#{gradeController.grade.gradePK.studentId}"  >
+                    <f:selectItems value="#{gradeController.students}"
+                                   var="student"
+                                   itemLabel="#{student.name}"
+                                   itemValue="#{student.id}"/>
+                </h:selectOneMenu>
+                <h:message for="type" errorClass="text-danger"/>
+            </h:panelGroup>
+            <h:panelGroup layout="block" class="form-group">
+                <h:selectOneMenu class="custom-select"
+                                 id="course"
+                                 value="#{gradeController.grade.gradePK.courseId}"  >
+                    <f:selectItems value="#{gradeController.courses}"
+                                   var="course"
+                                   itemLabel="#{course.name}"
+                                   itemValue="#{course.id}"/>
+                </h:selectOneMenu>
+                <h:message for="type" errorClass="text-danger"/>
+            </h:panelGroup>
+            <h:panelGroup layout="block" class="form-group">
+                <h:inputText p:placeholder="Grade" class="form-control" id="grade" value="${gradeController.grade.grade}"/>
+                <h:message for="grade" errorClass="text-danger"/>
+            </h:panelGroup>
+            <h:commandButton rendered="#{not empty gradeController.grade.gradePK}" class="btn btn-primary submit add-update" action="#{gradeController.updateGrade()}" value="Update Grade" ></h:commandButton>
+            <h:commandButton rendered="#{empty gradeController.grade.gradePK}" class="btn btn-primary submit add-update" action="#{gradeController.executeSaveGrade()}" value="Add Grade" ></h:commandButton>
+            Ï                        </h:form>
+        <br/><br/>
+        <h:dataTable value="#{gradeController.getGrades()}" var="grade" p:rowIndexVar="rowIndex"
+                     border="1" cellpadding="5"   class="table table-striped custom-table">
+
+            <h:column> 
+                <f:facet name = "header">Student</f:facet>    				
+                    #{grade.student.name}
+            </h:column>
+            <h:column> 
+                <f:facet name = "header">Course</f:facet>    				
+                    #{grade.course.name}
+            </h:column>
+            <h:column> 
+                <f:facet name = "header">Grade</f:facet>    				
+                    #{grade.grade}
+            </h:column>
+            <h:column> 
+                <f:facet name = "header">Actions</f:facet> 
+                <h:form>
+                    <h:commandButton class="btn btn-link"  action="#{gradeController.editGrade(grade.student.id,grade.course.id)}" value="Edit" ></h:commandButton>
+                    <h:commandButton class="btn btn-link" action="#{gradeController.removeGrade(grade)}" value="Delete" ></h:commandButton>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/templates/portalTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="title">
+        Course
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h:inputHidden id="id" value="${courseController.course.id}"/>
+            <h:panelGroup layout="block" class="form-group">
+                <h:inputText p:placeholder="Name" class="form-control" id="name" value="${courseController.course.name}"/>
+                <h:message for="name" errorClass="text-danger"/>
+            </h:panelGroup>
+            <h:panelGroup layout="block" class="form-group">
+                <h:inputText p:placeholder="Credits" class="form-control" id="credit" value="${courseController.course.credits}"/>
+                <h:message for="credit" errorClass="text-danger"/>
+            </h:panelGroup>
+            <h:panelGroup layout="block" class="form-group">
+                <h:selectOneMenu class="custom-select"
+                                 id="department"
+                                 value="#{courseController.course.departmentId}" converter="departmentConverter" >
+                    <f:selectItems value="#{courseController.departments}"
+                                   var="dept"
+                                   itemLabel="#{dept.name}"
+                                   itemValue="#{dept}"/>
+                </h:selectOneMenu>
+                <h:message for="type" errorClass="text-danger"/>
+            </h:panelGroup>
+            <h:panelGroup layout="block" class="form-group">
+                <h:selectOneMenu class="custom-select"
+                                 id="teacher"
+                                 value="#{courseController.course.teacherId}" converter="teacherConverter" >
+                    <f:selectItems value="#{courseController.teachers}"
+                                   var="teacher"
+                                   itemLabel="#{teacher.name}"
+                                   itemValue="#{teacher}"/>
+                </h:selectOneMenu>
+                <h:message for="type" errorClass="text-danger"/>
+            </h:panelGroup>
+            <h:commandButton rendered="#{not empty courseController.course.id}" class="btn btn-primary submit add-update" action="#{courseController.updateCourse()}" value="Update Course" ></h:commandButton>
+            <h:commandButton rendered="#{empty courseController.course.id}" class="btn btn-primary submit add-update" action="#{courseController.executeSaveCourse()}" value="Add Course" ></h:commandButton>
+        </h:form>
+        <br/><br/>
+        <h:dataTable value="#{courseController.getCourses()}" var="course" p:rowIndexVar="rowIndex"
+                     border="1" cellpadding="5"   class="table table-striped custom-table">
+            <h:column> 
+                <f:facet name = "header">Name</f:facet>    				
+                    #{course.name}
+            </h:column>
+            <h:column> 
+                <f:facet name = "header">Credits</f:facet>    				
+                    #{course.credits}
+            </h:column>
+            <h:column> 
+                <f:facet name = "header">Department</f:facet>    				
+                    #{course.departmentId.name}
+            </h:column>
+            <h:column> 
+                <f:facet name = "header">Actions</f:facet> 
+                <h:form>
+                    <h:commandButton class="btn btn-link"  action="#{courseController.editCourse(course.id)}" value="Edit" ></h:commandButton>
+                    <h:commandButton class="btn btn-link" action="#{courseController.removeCourse(course)}" value="Delete" ></h:commandButton>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+
+</ui:composition>
